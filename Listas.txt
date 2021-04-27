@@ -1,0 +1,22 @@
+Algoritmo DeclaracionDeListas
+	
+	Definir usuarios Como Caracter;
+	Definir puntajes Como Entero;
+	Definir resultado Como Entero;
+	
+	Dimension usuarios(25);
+	Dimension puntajes(58);
+	
+	usuarios(2) = "Fulano";
+	Escribir "Por favor ingrese su nombre:";
+	Leer usuarios(15);
+	Escribir "Bienvenido ",usuarios(15);
+	Escribir "El usuario ",usuarios(2)," ya se encuentra conectado";
+	
+	puntajes(8) = 250;
+	puntajes(9) = 125;
+	resultado = puntajes(9) + 1500;
+	Escribir "Su puntaje es ",resultado;
+	EScribir "El puntaje de su oponente es ", puntajes(8);
+	
+FinAlgoritmo
