@@ -1,0 +1,26 @@
+Algoritmo ejercicio
+	
+	Definir nombre Como Caracter;
+	Definir edad Como Entero;
+	
+	Definir hora_txt Como Caracter;
+	
+	Definir fecha Como Caracter;
+	
+	Escribir "Por favor ingrese su nombre: ";
+	Leer nombre;
+	
+	Escribir "Por favor ingrese su edad: ";
+	Leer edad;
+	
+	Escribir "Por favor ingrese la hora actual: ";
+	Leer hora_txt;
+	
+	Escribir "Por favor ingrese la fecha actual: ";
+	Leer fecha;
+	
+	Escribir "Hola, ",nombre,", tienes ",edad," años";
+	Escribir "Son las ",hora_txt," del día ",fecha;
+	
+	
+FinAlgoritmo

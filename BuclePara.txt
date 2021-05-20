@@ -1,0 +1,9 @@
+Algoritmo BuclePara
+	
+	Definir contador Como Entero;
+	
+	Para contador=0 Hasta 10 Con Paso 1 Hacer
+		Escribir "El valor del contador es ", contador;
+	Fin Para
+	
+FinAlgoritmo

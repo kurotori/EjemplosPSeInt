@@ -1,0 +1,11 @@
+Algoritmo BucleMientras
+	
+	Definir numeroA Como Entero;
+	numeroA = 1;
+	
+	Mientras numeroA < 11 Hacer
+		Escribir numeroA;
+		numeroA = numeroA + 1;
+	Fin Mientras
+	
+FinAlgoritmo

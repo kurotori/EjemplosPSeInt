@@ -1,0 +1,23 @@
+Algoritmo sin_titulo
+	Definir dato1 Como Entero;
+	dato1 = 26;
+	Definir dato2 Como Caracter;
+	dato2 = "";
+	
+	
+	Si dato1 <= 25 Entonces
+		Definir dato3 Como Caracter;
+		dato3="hola";
+		Escribir dato3;
+	Fin Si
+	
+	Escribir "¿Si o no?";
+	Leer dato2;
+	
+	Si dato2 == "si" Entonces
+		Escribir "Dijo que si";
+	SiNo
+		Escribir "No dijo que si";
+	Fin Si
+	
+FinAlgoritmo
