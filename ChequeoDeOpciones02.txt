@@ -1,0 +1,19 @@
+Algoritmo Chequeo01
+	
+	Definir opcion01 Como Entero;
+	opcion01 = 0;
+	
+	Escribir "Escriba un número, por favor";
+	Leer opcion01;
+	
+	Si opcion01 < 10 Entonces
+		Escribir "Ese número es menor que 10";
+	SiNo
+		Si opcion01 > 10 Entonces
+			Escribir "Ese número es mayor que 10";
+		SiNo
+			Escribir "Ese número es igual a 10";
+		Fin Si
+	Fin Si
+	
+FinAlgoritmo
