@@ -1,0 +1,29 @@
+Algoritmo RecorredorDeListas
+	//Declaración de la lista
+	Definir listaNombres Como Caracter;
+	Dimension listaNombres(5);
+	
+	//Asignación de valores a las posiciones de la lista
+	listaNombres(0) = "Pedro";
+	listaNombres(1) = "Marcos";
+	listaNombres(2) = "Ana";
+	listaNombres(3) = "Sabrina";
+	listaNombres(4) = "Candelaria";
+	
+	//Declaración de una variable para el bucle PARA
+	Definir posicion Como Entero;
+	
+	//Declaración del bucle Para
+	// Este bucle se declara de forma que cada ejecución del mismo coincida
+	// con cada posicion de la lista.
+	Para posicion=0 Hasta 4 Con Paso 1 Hacer
+		//Cada sentencia que indiquemos en esta sección se ejecutará una vez
+		//por cada posicion de la lista.
+		
+		//El sumarle 1 al valor de posicion permite mostrar los nombres
+		//de la lista en pantalla de una manera más parecida a la que usamos
+		//en el lenguaje cotidiano.
+		Escribir "El nombre ",posicion+1," es ",listaNombres(posicion);
+	Fin Para
+	
+FinAlgoritmo
