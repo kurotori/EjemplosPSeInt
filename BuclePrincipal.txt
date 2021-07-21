@@ -1,0 +1,35 @@
+Algoritmo BuclePrincipal
+	
+	//Este algoritmo permite utilizar un bucle Mientras controlado
+	//para generar un programa que solo se cierra cuando el usuario así
+	//lo desea. 
+	
+	//Declaramos una variable llamada 'opcion1' a para almacenar la opción  
+	//elegida por el usuario.
+	
+	Definir opcion1 Como Caracter;
+	opcion1 = "";
+	
+	//Declaramos un bucle Mientras controlado por el valor de la variable
+	//'opcion1'
+	
+	
+	//Mientras la variable opcion1 NO contenga el valor "n", el bucle va a
+	//Seguir
+	Mientras opcion1 <> "n" Hacer
+		//Limpiamos la pantalla para que la misma solo muestre el resultado
+		//más actual del algoritmo.
+		Limpiar Pantalla;
+		
+		//Mostramos un mensaje al usuario para que este sepa lo que
+		//puede hacer en este punto.
+		Escribir "Hola, bienvenido a este algoritmo.";
+		Escribir "¿Deseas continuar? SI(s) o NO(n)";
+		
+		//Leemos desde el teclado hacia la variable opcion1.
+		Leer opcion1;
+		
+	FinMientras
+	
+	
+FinAlgoritmo
