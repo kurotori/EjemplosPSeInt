@@ -1,0 +1,22 @@
+Algoritmo BuclePrincipal
+	
+	Definir opcion1 Como Caracter;
+	Definir nombre Como Caracter;
+	nombre="";
+	opcion1="";
+	
+	Escribir "Por favor ingrese su nombre:";
+	Leer nombre;
+	
+	Mientras opcion1<>"n" Hacer
+		Limpiar Pantalla;
+		Escribir "Bienvenido Usuario ", nombre;
+		Escribir "¿Desea Continuar?";
+		Escribir "s - Si";
+		Escribir "n - No";
+		
+		Leer opcion1;
+	Fin Mientras
+	
+	
+FinAlgoritmo

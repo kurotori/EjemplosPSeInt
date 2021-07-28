@@ -1,0 +1,18 @@
+Algoritmo Chequeo02
+	
+	Definir opcion01 Como Caracter;
+	opcion01 = "";
+	
+	Escribir "¿Es de día? (si/no)";
+	Leer opcion01;
+	
+	Si opcion01=="si" Entonces
+		Escribir "Buenos Días";
+	SiNo
+		Si opcion01 == "no" Entonces
+			Escribir "Buenas Noches";
+		SiNo
+			Escribir "Disculpe, no entendí lo que escribió";
+		Fin Si
+	Fin Si
+FinAlgoritmo
