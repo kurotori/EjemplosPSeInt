@@ -1,0 +1,64 @@
+Algoritmo Ruleta
+	
+	Definir opcion1 Como Caracter;
+	opcion1="";
+	Definir opcionS Como Caracter;
+	Definir fichas Como Entero;
+	fichas = 0;
+	Definir apuesta Como Entero;
+	apuesta = 0;
+	Definir rula Como Entero;
+	rula = 0;
+	
+	Mientras opcion1!="x" Hacer
+		Limpiar Pantalla;
+		Escribir "Elige una opción";
+		Escribir "F - Iniciar el juego";
+		Escribir "X - Salir";
+		Leer opcion1;
+		
+		Si opcion1=="x" Entonces
+			Escribir "El programa se va a cerrar";
+			Escribir "¿Esta de acuerdo? Si(s) o No(n)";
+			
+			opcionS = "";
+			Leer opcionS;
+			
+			Si opcionS=="n" Entonces
+				opcion1="";
+			Fin Si
+		Fin Si
+		
+		Si opcion1=="f" Entonces
+			fichas = 100;
+			Mientras fichas >= 0 Hacer
+				Limpiar Pantalla;
+				Escribir "Tenés ",fichas," fichas";
+				Escribir "Realiza tu apuesta (Entre 1 y 10)";
+				Leer apuesta;
+				
+				Si apuesta > 10 O apuesta < 0 Entonces
+					Escribir "APUESTA NO VÁLIDA. INTENTA NUEVAMENTE";
+					Escribir "Presiona cualquier tecla para continuar";
+					Esperar Tecla;
+				SiNo
+					rula = AZAR(10) + 1;
+					Escribir "Salió un ",rula;
+					Si apuesta==rula Entonces
+						Escribir "GANASTE";
+						fichas = fichas + 10;
+					SiNo
+						Escribir "PERDISTE";
+						fichas = fichas - 10;
+					Fin Si
+					Esperar Tecla;
+				Fin Si
+				
+			Fin Mientras
+			
+		Fin Si
+		
+		
+	Fin Mientras
+	
+FinAlgoritmo
