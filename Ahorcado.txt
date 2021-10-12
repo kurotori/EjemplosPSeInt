@@ -18,15 +18,37 @@ Algoritmo Ahorcado
 	//Escribir Subcadena(palabra,3,3);
 	Definir posicion Como Entero;
 	posicion=0;
+	Definir letraEsta Como Logico;
+	letraEsta=Falso;
 	
 	Mientras vidas > 0 Hacer
 		Escribir "Vidas: ",vidas;
+		MostrarPalabra = "";
 		
 		Para posicion = 0 Hasta cantLetras-1 Con Paso 1 Hacer
 			MostrarPalabra = Concatenar(MostrarPalabra,"_ ");
 		Fin Para
+		
 		Escribir MostrarPalabra;
+		
 		Leer letra;
+		
+		posicion = 0;
+		letraEsta = Falso;
+		
+	Mientras letraEsta==Falso y posicion < cantLetras Hacer
+			Si letra == Subcadena(palabra,posicion,posicion) Entonces
+				letraEsta = Verdadero;
+			SiNo
+				letraEsta = Falso;
+			Fin Si
+			posicion = posicion +1;
+	FinMientras
+		
+	Si letraEsta!=Verdadero Entonces
+		vidas = vidas-1;
+	Fin Si
+		
 	Fin Mientras
 	
 	Limpiar Pantalla;
