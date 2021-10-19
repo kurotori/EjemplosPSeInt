@@ -18,15 +18,29 @@ Algoritmo Ahorcado
 	//Escribir Subcadena(palabra,3,3);
 	Definir posicion Como Entero;
 	posicion=0;
+	Definir posicion2 Como Entero;
+	posicion2=0;
 	Definir letraEsta Como Logico;
 	letraEsta=Falso;
 	
 	Mientras vidas > 0 Hacer
+		Escribir "Letras Acertadas:", letrasAcertadas;
 		Escribir "Vidas: ",vidas;
 		MostrarPalabra = "";
 		
 		Para posicion = 0 Hasta cantLetras-1 Con Paso 1 Hacer
-			MostrarPalabra = Concatenar(MostrarPalabra,"_ ");
+			letraEsta = falso;
+			Mientras posicion2<Longitud(letrasAcertadas) Y letraEsta == Falso Hacer
+				Si Subcadena(palabra,posicion,posicion)==Subcadena(letrasAcertadas,posicion2,posicion2) Entonces
+					MostrarPalabra = Concatenar(MostrarPalabra, Subcadena(letrasAcertadas,posicion2,posicion2) );
+					letraEsta = Verdadero;
+				SiNo
+					MostrarPalabra = Concatenar(MostrarPalabra,"_ ");
+				Fin Si
+				posicion2 = posicion2 + 1;
+			Fin Mientras
+			
+			
 		Fin Para
 		
 		Escribir MostrarPalabra;
@@ -34,20 +48,22 @@ Algoritmo Ahorcado
 		Leer letra;
 		
 		posicion = 0;
+		
 		letraEsta = Falso;
 		
-	Mientras letraEsta==Falso y posicion < cantLetras Hacer
-			Si letra == Subcadena(palabra,posicion,posicion) Entonces
-				letraEsta = Verdadero;
-			SiNo
-				letraEsta = Falso;
-			Fin Si
-			posicion = posicion +1;
-	FinMientras
-		
-	Si letraEsta!=Verdadero Entonces
-		vidas = vidas-1;
-	Fin Si
+		Mientras letraEsta==Falso y posicion < cantLetras Hacer
+				Si letra == Subcadena(palabra,posicion,posicion) Entonces
+					letraEsta = Verdadero;
+					letrasAcertadas = Concatenar(letrasAcertadas,letra);
+				SiNo
+					letraEsta = Falso;
+				Fin Si
+				posicion = posicion +1;
+		FinMientras
+			
+		Si letraEsta<>Verdadero Entonces
+			vidas = vidas-1;
+		Fin Si
 		
 	Fin Mientras
 	
