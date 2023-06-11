@@ -1,0 +1,36 @@
+Algoritmo ManejoDeUsuarios
+	
+	Definir nombres Como Caracter;
+	Dimension nombres(5);
+	
+	Definir apuestas Como Entero;
+	Dimension apuestas(5);
+	
+	Definir fichas Como Entero;
+	Dimension fichas(5);
+	
+	Definir contador Como Entero;
+	
+	Para contador=0 Hasta 4 Con Paso 1 Hacer
+		Limpiar Pantalla;
+		Escribir "Ingresa el nombre del jugador ",contador+1;
+		Leer nombres(contador);
+		fichas(contador) = 100;
+	Fin Para
+	
+	Limpiar Pantalla;
+	Escribir "Jugadores:";
+	
+	Para contador=0 Hasta 4 Con Paso 1 Hacer
+		Escribir nombres(contador),"-",fichas(contador)," fichas";
+	Fin Para
+	
+	Esperar Tecla;
+	
+	Para contador=0 Hasta 4 Con Paso 1 Hacer
+		Limpiar Pantalla;
+		Escribir nombres(contador)," Ingresa tu apuesta";
+		Leer apuestas(contador);
+	Fin Para
+	
+FinAlgoritmo

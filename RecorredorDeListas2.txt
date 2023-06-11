@@ -1,0 +1,19 @@
+Algoritmo sin_titulo
+	
+	Definir longitudLista Como Entero;
+	longitudLista = 5;
+	
+	Definir listaDeNombres Como Caracter;
+	Dimension listaDeNombres(longitudLista);
+	
+	Definir opcion1 Como Caracter;
+	opcion1 = "";
+	
+	Definir posicion Como Entero;
+	Para posicion=0 Hasta longitudLista Con Paso 1 Hacer
+		
+		
+	Fin Para
+	
+	
+FinAlgoritmo
