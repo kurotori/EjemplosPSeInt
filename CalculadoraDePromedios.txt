@@ -1,0 +1,34 @@
+Algoritmo CalculadoraDePromedios
+	Definir cantAsignaturas Como Entero;
+	Escribir "¿Cuántas asignaturas tienes?";
+	Leer cantAsignaturas;
+	
+	Definir listaNotas Como Entero;
+	Definir listaAsign Como Caracter;
+	Dimension listaNotas(cantAsignaturas);
+	Dimension listaAsign(cantAsignaturas);
+	
+	Definir posicion Como Entero;
+	
+	Para posicion=0 Hasta (cantAsignaturas-1) Con Paso 1 Hacer
+		Escribir "Asignatura ",(posicion+1), ":" ;
+		Leer listaAsign(posicion);
+		Escribir "Nota: ";
+		Leer listaNotas(posicion);
+		Limpiar Pantalla;
+	Fin Para
+	
+	Definir promedio Como Entero;
+	promedio = 0;
+	
+	Para posicion=0 Hasta (cantAsignaturas-1) Con Paso 1 Hacer
+		promedio = promedio + listaNotas(posicion);
+		Escribir listaAsign(posicion), " - ", listaNotas(posicion);
+	Fin Para
+	
+	promedio = REDON( promedio / cantAsignaturas );
+	
+	Escribir "--------------------------------";
+	Escribir "PROMEDIO: ",promedio;
+	
+FinAlgoritmo

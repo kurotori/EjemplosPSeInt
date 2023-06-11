@@ -1,0 +1,179 @@
+
+//Devuelve verdadero si letra1 aparece antes que letra2 en el abecedario
+//si no es así o son iguales, devuelve falso.
+	Funcion resultado<-LetrasOrdenadas(letra1,letra2)
+		Definir letras como Caracter;
+		Definir valores como Entero;
+		Definir resultado como Logico;
+		Dimension letras[28];
+		Dimension valores[28];
+		letras[0]='a';
+		letras[1]='b';
+		letras[2]='c';
+		letras[3]='d';
+		letras[4]='e';
+		letras[5]='f';
+		letras[6]='g';
+		letras[7]='h';
+		letras[8]='i';
+		letras[9]='j';
+		letras[10]='k';
+		letras[11]='l';
+		letras[12]='m';
+		letras[13]='n';
+		letras[14]='ñ';
+		letras[15]='o';
+		letras[16]='p';
+		letras[17]='q';
+		letras[18]='r';
+		letras[19]='s';
+		letras[20]='t';
+		letras[21]='u';
+		letras[22]='v';
+		letras[23]='w';
+		letras[24]='x';
+		letras[25]='y';
+		letras[26]='z';
+		
+		valores[0]=0;
+		valores[1]=1;
+		valores[2]=2;
+		valores[3]=3;
+		valores[4]=4;
+		valores[5]=5;
+		valores[6]=6;
+		valores[7]=7;
+		valores[8]=8;
+		valores[9]=9;
+		valores[10]=10;
+		valores[11]=11;
+		valores[12]=12;
+		valores[13]=13;
+		valores[14]=14;
+		valores[15]=15;
+		valores[16]=16;
+		valores[17]=17;
+		valores[18]=18;
+		valores[19]=19;
+		valores[20]=20;
+		valores[21]=21;
+		valores[22]=22;
+		valores[23]=23;
+		valores[24]=24;
+		valores[25]=25;
+		valores[26]=26;
+		
+		letra1=Minusculas(letra1);
+		letra2=Minusculas(letra2);
+		
+		Definir v_letra1, v_letra2,posicion como entero;
+		v_letra1=0;
+		v_letra2=0;
+		posicion=0;
+		
+		Mientras posicion<=26 Hacer
+			Si letra1=letras[posicion] Entonces
+				v_letra1=posicion;
+				posicion=27;
+			SiNo
+				posicion = posicion+1 ;
+			Fin Si
+		Fin Mientras
+		//Escribir "letra 1:",v_letra1;
+		
+		posicion=0;
+		Mientras posicion<=26 Hacer
+			Si letra2=letras[posicion] Entonces
+				v_letra2=posicion;
+				posicion=27;
+			SiNo
+				posicion = posicion+1 ;
+			Fin Si
+		Fin Mientras
+		
+		//Escribir "letra 2:",v_letra2;
+		
+		resultado=falso;
+		
+		Si v_letra1<v_letra2 Entonces
+			resultado=Verdadero;
+		Fin Si
+		
+	FinFuncion
+	
+	
+Funcion resultado<-PalabrasOrdenadas(palabra1,palabra2)
+	Definir resultado como Logico;
+	resultado=falso;
+	Definir letra1_1, letra1_2 como Caracter;
+	Definir long_mas_corta como Entero;
+	
+	Si Longitud(palabra1)>Longitud(palabra2) Entonces
+		long_mas_corta=Longitud(palabra2);
+		//Escribir "long mas corta ", palabra2;
+	SiNo
+		long_mas_corta=Longitud(palabra1);
+		//Escribir "long mas corta ", palabra1;
+	Fin Si
+	
+	Definir posicion como Entero;
+	Para posicion<-0 Hasta long_mas_corta Con Paso 1 Hacer
+		letra1_1 = Subcadena(palabra1,posicion,posicion);
+		letra1_2 = Subcadena(palabra2,posicion,posicion);
+		
+		Si letra1_1<>letra1_2 Entonces
+			Si LetrasOrdenadas(letra1_1,letra1_2) Entonces
+				resultado = Verdadero;
+			Fin Si
+			posicion=long_mas_corta;
+		Fin Si
+	Fin Para
+	
+	
+	
+	
+	
+	
+	
+FinFuncion
+	
+Algoritmo OrdenAlfabetico
+	Definir palabras como Caracter;
+	Dimension palabras[5];
+	palabras[0]="palo";
+	palabras[1]="ábaco";
+	palabras[2]="loco";
+	palabras[3]="aaron";
+	palabras[4]="eso";
+	
+	Escribir "Antes de ordenar";
+	Definir pos Como Entero;
+	Para pos<-0 Hasta 5-1 Con Paso 1 Hacer
+		Escribir palabras[pos];
+	Fin Para
+	
+	
+	
+	Definir posA como Entero;
+	Definir temporal Como Caracter;
+	Para posA<-0 Hasta 5-1 Con Paso 1 Hacer
+		Si posA+1<5 Entonces
+			Si NO PalabrasOrdenadas(palabras[posA],palabras[posA+1]) Entonces
+				temporal=palabras[posA];
+				palabras[posA]=palabras[posA+1];
+				palabras[posA+1]=temporal;
+			Fin Si
+		Fin Si
+		
+	Fin Para
+	
+	Escribir "Después de ordenar";
+	pos=0;
+	Para pos<-0 Hasta 5-1 Con Paso 1 Hacer
+		Escribir palabras[pos];
+	Fin Para
+	
+	
+	
+	
+FinAlgoritmo

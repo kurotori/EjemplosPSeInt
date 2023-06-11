@@ -1,0 +1,525 @@
+
+
+
+// ---- FUNCIONES AUXILIARES ---- //
+
+//Esta función selecciona una palabra al azar de una lista predefinida
+// y la entrega como resultado
+Funcion palabra<-diccionario()
+	//Se definen las variables 'palabra' y 'palabras'
+	Definir palabra,palabras como texto;
+	//Declaramos a 'palabras' como una lista
+	Dimension palabras(50);
+	
+	//Agregamos palabras a la lista 'palabras'
+	palabras(0)='Gorra';
+	palabras(1)='Gato';
+	palabras(2)='Sol';
+	palabras(3)='Lámpara';
+	palabras(4)='Avioneta';
+	palabras(5)='Tren';
+	palabras(6)='Pelota';
+	palabras(7)='Río';
+	palabras(8)='Libro';
+	palabras(9)='Montaña';
+	palabras(10)='Nube';
+	palabras(11)='Reloj';
+	palabras(12)='Guitarra';
+	palabras(13)='Llave';
+	palabras(14)='Vaso';
+	palabras(15)='Zapato';
+	palabras(16)='Locura';
+	palabras(17)='Diente';
+	palabras(18)='Camisa';
+	palabras(19)='Lapicera';
+	palabras(20)='Arcoiris';
+	palabras(21)='Silla';
+	palabras(22)='Perro';
+	palabras(23)='Puerta';
+	palabras(24)='Computadora';
+	palabras(25)='Ojo';
+	palabras(26)='Manzana';
+	palabras(27)='Coche';
+	palabras(28)='Martillo';
+	palabras(29)='Globo';
+	palabras(30)='Lobo';
+	palabras(31)='Peluche';
+	palabras(32)='Luna';
+	palabras(33)='Globo';
+	palabras(34)='Celular';
+	palabras(35)='Naranja';
+	palabras(36)='Mariposa';
+	palabras(37)='Sopa';
+	palabras(38)='Boleto';
+	palabras(39)='Silla';
+	palabras(40)='Pintura';
+	palabras(41)='Pájaro';
+	palabras(42)='Calzada';
+	palabras(43)='Sombrero';
+	palabras(44)='Helado';
+	palabras(45)='Piscina';
+	palabras(46)='Cepillo';
+	palabras(47)='Anillo';
+	palabras(48)='Pluma';
+	palabras(49)='Rana';
+	
+	//Asignamos a la variable 'palabra' una posición de la lista 'palabras'
+	// elegida al azar mediante la función 'Azar'. También pasamos esa palabra
+	// a minúsculas con la función 'Minusculas'
+	palabra = Minusculas(palabras(Azar(50)));
+FinFuncion
+
+
+//Esta función obtiene la letra que se encuentra en la posición numérica indicada
+// por el parámetro 'posición', buscándola dentro de la palabra indicada en el
+// parámetro 'palabra'
+Funcion letra<-letraEn(posicion,palabra)
+	//Declaramos la variable 'letra' para la letra que buscaremos
+	Definir letra como Texto;
+	
+	//Chequeamos que el valor de posición no sea negativo ni 
+	// supere la cantidad de caracteres de la palabra indicada 
+	Si (posicion >= 0) Y (posicion < Longitud(palabra)) Entonces
+		//Si cumple con esas condiciones obtenemos la letra en esa 
+		// posición usando la función 'Subcadena'y la almacenamos en la variable 'letra'
+		letra = Subcadena(palabra,posicion,posicion);
+	SiNo
+		//Si no cumple con estas condiciones, se establece el valor de
+		// la variable 'letra' con un texto vacío
+		letra="";
+	Fin Si
+FinFuncion
+
+
+//Esta función busca una letra, indicada por el parámetro 'letra', en una palabra,
+// indicada por el parámetro 'palabra'. Si la encuentra, devuelve 'Verdadero', de
+// lo contrario devuelve 'Falso'
+
+Funcion resultado<-buscarLetra(letra,palabra)
+	//Declaramos la variable 'resultado' y la inicializamos en 'Falso'
+	Definir resultado como Logico;
+	resultado=falso;
+	//Declaramos las variables 'letraTemp' y 'posición'
+	Definir letraTemp como Texto;
+	Definir posicion como entero;
+	//Recorremos la palabra, letra a letra, con un 'Para'
+	Para posicion<-0 Hasta Longitud(palabra) Con Paso 1 Hacer
+		//En cada posición, obtenemos la letra correspondiente
+		// con la función 'letraEn' y la guardamos en la variable 'letraTemp'
+		letraTemp = letraEn(posicion,palabra);
+		//Chequeamos si esa letra es igual a la letra en el parámetro 'letra' 
+		Si letra=letraTemp Entonces
+			//Si son iguales, establecemos el valor de la variable 'resultado'
+			// en 'Verdadero'
+			resultado=Verdadero;
+			//Y establecemos el valor de la variable 'posicion' al tope establecido
+			// (o sea, la cantidad de caracteres de la palabra indicada) para forzar
+			// el cierre del bucle Para
+			posicion=Longitud(palabra);
+		Fin Si
+	Fin Para
+FinFuncion
+
+
+//Esta función determina qué cantidad de veces aparece una letra, indicada en el 
+// parámetro 'letra', en una palabra, indicada por el parámetro 'palabra'
+Funcion resultado<-vecesLetra(letra,palabra)
+	//Declaramos la variable 'resultado' y la inicializamos en 0
+	Definir resultado como Entero;
+	resultado=0;
+	//Declaramos las variables 'letraTemp' y 'posición'
+	Definir letraTemp como Texto;
+	Definir posicion como entero;
+	//Recorremos la palabra, letra a letra, con un 'Para'
+	Para posicion<-0 Hasta Longitud(palabra) Con Paso 1 Hacer
+		//En cada posición, obtenemos la letra correspondiente
+		// con la función 'letraEn' y la guardamos en la variable 'letraTemp'
+		letraTemp = letraEn(posicion,palabra);
+		//Chequeamos si esa letra es igual a la letra en el parámetro 'letra'
+		Si letra=letraTemp Entonces
+			//Si son iguales, aumentamos el valor de resultado en 1
+			resultado=resultado+1;
+		Fin Si
+	Fin Para
+FinFuncion
+
+
+//Esta función muestra en pantalla el contenido de una lista de tipo Texto, 
+// indicada por el parámetro 'letrasUsadas'.
+// 		NOTA: Esta lista tiene una longitud de 26 posiciones por lo que se establece 
+// 		ese límite en el código, debido a que PSeInt no ofrece funciones para obtener 
+// 		la longitud de una lista de forma dinámica.
+Funcion mostrarLetrasUsadas(letrasUsadas)
+	//Declaramos las variables 'posicion' y 'muestra'
+	Definir posicion como Entero;
+	Definir muestra como Texto;
+	//Inicializamos la variable 'muestra' con un texto vacío
+	muestra="";
+	
+	//Recorremos la lista con un 'Para'. 
+	Para posicion=0 Hasta 25 Con Paso 1 Hacer
+		//Chequeamos si la posición de la lista actual contiene una letra o un
+		// texto vacío, consultando su longitud y comparando si es mayor a 0
+		Si Longitud( letrasUsadas(posicion) ) > 0 Entonces
+			//Si hay una letra, la agregamos a la variable 'muestra' junto con un espacio
+			muestra= muestra + letrasUsadas(posicion) + " ";
+		Fin Si
+	Fin Para
+	//Finalmente, mostramos el contenido de la variable 'muestra' en pantalla
+	Escribir muestra;
+FinFuncion
+
+
+//Esta función chequea si una letra, indicada por el parámetro 'letra', ya ha sido
+// agregada a la lista de letras usadas, indicada por el parámetro 'letrasUsadas'.
+// Si es así, devuelve un valor 'Verdadero', de lo contrario devuelve un valor 'Falso'
+// 		NOTA: Esta lista tiene una longitud de 26 posiciones por lo que se establece 
+// 		ese límite en el código, debido a que PSeInt no ofrece funciones para obtener 
+// 		la longitud de una lista de forma dinámica.
+Funcion resultado<-chequearRepetida(letra, letrasUsadas)
+	//Declaramos la variable 'resultado' y la inicializamos en 'Falso'
+	Definir resultado Como Logico;
+	resultado = Falso;
+	//Declaramos la variable 'posicion' para recorrer la lista de letras
+	Definir posicion como Entero;
+	
+	//Recorremos la lista usando un 'Para'
+	Para posicion=0 Hasta 25 Con Paso 1 Hacer
+		//Para cada posición de la lista, chequeamos si la letra indicada
+		// es igual a la letra en esa posición.
+		Si letra=letrasUsadas(posicion) Entonces
+			//Si es así, establecemos el valor de la variable 'resultado' en 'Verdadero'
+			resultado=Verdadero;
+			//Y establecemos el valor de la variable 'posicion' al tope, para cerrar el bucle
+			posicion=25;
+		Fin Si
+	Fin Para
+FinFuncion
+
+
+//Esta función permite mostrar un pequeño dibujo que varía según la cantidad de vidas
+// del jugador, indicadas por el parámetro 'vidas'.
+Funcion mostrarAhorcado(vidas)
+	//Declaramos la variable 'partes' y le agregamos una dimensión
+	// para convertirla en una lista.
+	Definir partes como Texto;
+	Dimension partes(7);
+	
+	//Agregamos los valores a la lista 'partes', que permitirán formar el dibujo
+	partes(6)="|   |";
+	partes(0)="|   O ";
+	partes(1)="|  /";
+	partes(2)="|";
+	partes(3)="\";
+	partes(4)="|  /";
+	partes(5)=" \";
+	
+	//Mostramos en pantalla la parte superior del dibujo
+	Escribir "____";
+	
+	//Usamos un 'Segun' para establecer qué mostrar, 
+	// de acuerdo a la cantidad de vidas del jugador
+	Segun vidas Hacer
+		0:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir partes(1),partes(2),partes(3);
+			Escribir partes(4),partes(5);
+		1:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir partes(1),partes(2),partes(3);
+			Escribir partes(4);
+		2:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir partes(1),partes(2),partes(3);
+			Escribir "| ";
+		3:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir partes(1),partes(2);
+			Escribir "| ";
+		4:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir partes(1);
+			Escribir "| ";
+		5:
+			Escribir partes(6);
+			Escribir partes(0);
+			Escribir "| ";
+			Escribir "| ";
+		6:
+			Escribir partes(6);
+			Escribir "| ";
+			Escribir "| ";
+			Escribir "| ";
+		7: 
+			Escribir "| ";
+			Escribir "| ";
+			Escribir "| ";
+			Escribir "| ";
+	Fin Segun
+	
+	//Finalmente, mostramos la parte final del dibujo
+	Escribir "|________________";
+FinFuncion
+
+
+//Esta función muestra, con guiones bajos, la cantidad de letras de la palabra secreta,
+// indicada por el parámetro 'palabra'. Si alguna letra ya fue descubierta, muestra
+// la letra en lugar del guión bajo, mediante el uso de la lista de letras usadas,
+// indicada por el parámetro 'listaLetras'.
+// 		NOTA: Esta lista tiene una longitud de 26 posiciones por lo que se establece 
+// 		ese límite en el código, debido a que PSeInt no ofrece funciones para obtener 
+// 		la longitud de una lista de forma dinámica.
+Funcion mostrarLugares(palabra,listaLetras)
+	//Declaramos las variables 'muestra' y 'letraAct'
+	Definir muestra,letraAct como Texto;
+	//Inicializamos la variable 'muestra' con un texto vacío
+	muestra="";
+	//Declaramos las variables 'posicionP' y 'posicionL' para
+	// recorrer la palabra y la lista de letras.
+	Definir posicionP,posicionL como entero;
+	
+	//Declaramos un 'Para' para recorrer la palabra letra a letra
+	Para posicionP=0 Hasta Longitud(palabra)-1 Con Paso 1 Hacer
+		//Establecemos el valor de la variable 'letraAct' con un espacio y un guión bajo
+		letraAct=" _";
+		//Recorremos, mediante un nuevo 'Para', la lista de letras
+		Para posicionL=0 Hasta 25 Con Paso 1 Hacer
+			//Comparamos la letra en la posición actual de la palabra 
+			//con cada letra de la lista
+			Si ( letraEn(posicionP,palabra) ) = ( listaLetras(posicionL) ) Entonces
+				//Si son iguales, cambiamos el valor de la variable 'letraAct'
+				// por un espacio y la letra de la lista
+				letraAct = " " + letraEn(posicionP,palabra);
+			Fin Si
+		Fin Para
+		//Agregamos el contenido de la variable 'letraAct' a la variable 'muestra'
+		muestra = muestra + letraAct;
+	FinPara
+	//Finalmente, mostramos en pantalla el contenido de la variable 'muestra'
+	Escribir muestra;
+FinFuncion
+
+
+//Esta función muestra un mensaje de error para ser usado cuando el jugador ingrese
+// una opción no válida en alguno de los menúes del juego.
+Funcion opcionNoValida()
+	Escribir "";
+	Escribir "Opción no válida.";
+	Escribir "Presione cualquier tecla para continuar";
+	Esperar tecla;
+FinFuncion
+
+// ---- Fin de FUNCIONES AUXILIARES ---- //
+
+// ---- EJECUCIÓN ---- //
+Algoritmo Ahorcado
+	
+	//Se definen las variables necesarias para la ejecución
+	Definir vidas,opciones,descubiertas,posicion,turno como Entero;
+	Definir palabra,intento,letrasUsadas como Texto;
+	//Transformamos 'letrasUsadas' en una lista de 26 posiciones 
+	// (para cada letra del abecedario),
+	// e inicializamos la variable 'opciones' (para el menú)
+	Dimension letrasUsadas(26);
+	opciones=0;
+	
+	//Declaramos el bucle principal del juego
+	Mientras opciones!=2 Hacer
+		
+		//Mostramos el menú con las opciones de inicio y esperamos la
+		// elección del usuario, que guardaremos en la variable 'opciones'
+		Limpiar Pantalla;
+		Escribir "-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+		Escribir "|----     AHORCADO     ----|";
+		Escribir "-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+		Escribir " ";
+		Escribir "____________________________";
+		Escribir "  1 - Comenzar Juego";
+		Escribir "  2 - Salir";
+		Escribir "____________________________";
+		Escribir " ";
+		Escribir " ";
+		Leer opciones;
+		
+		//Establecemos una estructura 'según' para manejar las opciones del usuario 
+		Segun opciones Hacer
+			//Si elige 1, el juego se inicia
+			1:
+				Limpiar Pantalla;
+				// ----- JUEGO -----
+				
+				//Inicializamos las variables 'vidas','descubiertas','turno' e 'intento'
+				vidas = 7;
+				descubiertas = 0;
+				turno=0;
+				intento = "";
+				
+				//Inicializamos la lista 'letrasUsadas' con cadenas de texto vacías
+				Para posicion=0 Hasta 25 Con Paso 1 Hacer
+					letrasUsadas(posicion)="";
+				Fin Para
+				
+				//Inicializamos la variable 'palabra' con una palabra secreta 
+				// elegida al azar mediante la función 'diccionario'
+				palabra = diccionario();
+				
+				//Declaramos el bucle principal del juego con dos condiciones:
+				//  1 - El jugador debe tener más de 0 vidas
+				//  2 - La cantidad de letras descubiertas debe ser menor que la
+				//      longitud de la palabra secreta
+				// Sin embargo, usamos '<=' y '>=' para que el juego muestre de todas maneras
+				// su interfáz principal, para mostrar ahí el resultado del jugador
+				Mientras (vidas >= 0) y (descubiertas <= Longitud(palabra)) Hacer
+					
+					//Mostramos la interfáz principal del juego
+					Limpiar Pantalla;
+					Escribir "Vidas: ",vidas;
+					Escribir "____________________________";
+					Escribir " ";
+					mostrarAhorcado(vidas);
+					Escribir "____________________________";
+					Escribir " ";
+					mostrarLugares(palabra,letrasUsadas);
+					Escribir "Letras Usadas:";
+					mostrarLetrasUsadas(letrasUsadas);
+					Escribir " ";
+					Escribir "____________________________";
+					
+					//Chequeamos que el juego no cumpla con una condición de cierre
+					//  1- ¿El jugador perdió todas sus vidas?
+					Si vidas=0 Entonces
+						//Si el jugador ya no tiene vidas, se lo anunciamos.
+						Escribir "PERDISTE";
+						//Revelamos la palabra secreta
+						Escribir "La palabra era : ",Mayusculas(palabra);
+						//Modificamos el valor de las variables de control
+						// ('vidas' y 'descubiertas') para que el bucle principal 
+						// del juego se cierre
+						descubiertas=longitud(palabra)+1;
+						vidas=-1;
+						//Hacemos que el juego espere una acción del usuario
+						Esperar Tecla;
+					FinSi
+					
+					//  2- ¿El jugador tiene vidas y ha descubierto todas las 
+					//      letras de la palabra?
+					Si (vidas > 0) y (descubiertas=Longitud(palabra)) Entonces
+						//Si el jugador descubrió todas las letras, se lo anunciamos
+						Escribir "ACERTASTE";
+						//confirmamos la palabra secreta
+						Escribir "La palabra era : ",Mayusculas(palabra);
+						//Modificamos el valor de la variable de control restante
+						// ('vidas') para que el bucle principal del juego se cierre
+						vidas=-1;
+						//Hacemos que el juego espere una acción del usuario
+						Esperar Tecla;
+					SiNo
+						//Si el jugador no ha descubierto todas las letras 
+						// de la palabra secreta, entramos en el juego en sí
+						
+						//1- Solicitamos al jugador que intente adivinar la palabra
+						Escribir "Intenta adivinar la palabra";
+						//2- Almacenamos el dato en la variable 'intento' y lo pasamos
+						//   a minúsculas para evitar confusiones en la evaluación
+						Leer intento;
+						intento=minusculas(intento);
+						
+						//Evaluamos el dato ingresado por el jugador comparando
+						// la longitud en caracteres del dato ingresado
+						Si Longitud(intento)>1 Entonces
+							//Si ingresó más de un caracter, entonces intentó adivinar
+							// la palabra secreta entera, por lo tanto lo comparamos
+							// con la palabra secreta
+							Si intento=palabra Entonces
+								//Si son iguales, entonces establecemos la cantidad de
+								// letras descubiertas a la longitud en caracteres de
+								// la palabra secreta
+								descubiertas=Longitud(palabra);
+							SiNo
+								//Si no son iguales, se lo anunciamos al jugador.
+								// Pasamos su intento a mayúsculas para destacarlo
+								Escribir "Erraste, no es ",Mayusculas(intento);
+								//Le quitamos una vida.
+								vidas=vidas-1;
+								//Y esperamos una acción del usuario
+								Esperar Tecla;
+							Fin Si
+						SiNo
+							//Si el intento tiene solo 1 letra comprobamos que no haya sido
+							//usada antes con la función 'chequearRepetida'
+							Si chequearRepetida(intento,letrasUsadas) Entonces
+								//Si está en la lista de letras usadas, le avisamos al jugador
+								// y esperamos una acción del mismo
+								Escribir "Ya usaste esa letra. Intenta nuevamente";
+								Esperar Tecla;
+							SiNo
+								//Si la letra no es repetida, la agregamos a la lista usando
+								// el número de turno como índice
+								letrasUsadas(turno)=intento;
+								
+								//Entonces chequeamos si la letra se encuentra en la palabra 
+								// secreta con la función 'buscarLetra'
+								Si buscarLetra(intento,palabra) Entonces
+									//Si la letra se encuentra en la palabra secreta, actualizamos
+									// el conteo de letras descubiertas con la función 'vecesLetra'
+									descubiertas = descubiertas + vecesLetra(intento,palabra);
+								SiNo
+									//Si no se  encuentra la letra, le restamos una vida aljugador
+									vidas=vidas-1;
+								Fin Si
+								//Finalmente, aumentamos el conteo de turnos en 1
+								turno=turno+1;
+							Fin Si
+						Fin Si
+					FinSi
+				Fin Mientras
+				
+				
+				// ----- FIN del Código del JUEGO -----
+			2:
+			//Si el jugador elige 2, mostramos una solicitud de confirmación
+				Escribir "";
+				Escribir "¿Desea salir del juego?";
+				Escribir "____________________________";
+				Escribir "  1 - No";
+				Escribir "  2 - Si";
+				Escribir "____________________________";
+				Escribir "";
+				//Y guardamos la elección del jugador en la variable opciones
+				Leer opciones;
+				
+				//Con un 'según' manejamos los valores de la opción del jugador
+				Segun opciones Hacer
+					//Si el jugador elige 1, reseteamos el valor de la variable 'opciones'
+					// para volver al menú inicial
+					1:
+						opciones=0;
+					//Si el jugador elige 2, mostramos un mensaje de despedida y se cierra
+					// el programa	
+					2:
+						Limpiar Pantalla;
+						Escribir "";
+						Escribir "Gracias por jugar";
+						Escribir "";
+						Escribir "2023, Luis Sebastián de los Ángeles";
+						Escribir "Distribuido bajo licencia MIT";
+						
+					//Si se ingresa un valor no establecido, se muestra un mensaje de error
+					// con la función 'opciónNoVálida'	
+					De Otro Modo:
+						opcionNoValida();
+				Fin Segun
+			//Si se ingresa un valor no establecido, se muestra un mensaje de error
+			// con la función 'opciónNoVálida'	
+			De Otro Modo:
+				opcionNoValida();
+		Fin Segun
+		
+	Fin Mientras
+	
+FinAlgoritmo

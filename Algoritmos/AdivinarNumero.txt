@@ -1,0 +1,24 @@
+Algoritmo AdivinarNumero
+	
+	Definir numeroSecreto Como Entero;
+	Definir numeroJugado Como Entero;
+	numeroSecreto = 5;//Azar(11);
+	numeroJugado = 12;
+	
+	Mientras numeroJugado!=numeroSecreto Hacer
+		Limpiar Pantalla;
+		Escribir "Adivina el número secreto";
+		Escribir "Escribe un número:";
+		Leer numeroJugado;
+		
+		Si numeroJugado==numeroSecreto Entonces
+			Escribir "Adivinaste!!";
+			Escribir  "El número era ",numeroSecreto;
+		SiNo
+			Escribir "NO!! Intenta de nuevo";
+			Escribir "Presiona cualquier tecla para continuar";
+			Esperar Tecla;
+		Fin Si
+	Fin Mientras
+	
+FinAlgoritmo
