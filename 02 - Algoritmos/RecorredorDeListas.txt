@@ -10,7 +10,7 @@ Algoritmo RecorredorDeListas
 	listaNombres(3) = "Sabrina";
 	listaNombres(4) = "Candelaria";
 	
-	//Declaración de una variable para el bucle PARA
+	//Declaración de una variable para recorrer el bucle PARA
 	Definir posicion Como Entero;
 	
 	//Declaración del bucle Para

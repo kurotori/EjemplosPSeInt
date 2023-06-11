@@ -476,7 +476,7 @@ Algoritmo Ahorcado
 								turno=turno+1;
 							Fin Si
 						Fin Si
-					FinSi
+					Fin Si
 				Fin Mientras
 				
 				
