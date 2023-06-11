@@ -8,7 +8,7 @@ Algoritmo BuclePrincipal
 	Escribir "Por favor ingrese su nombre:";
 	Leer nombre;
 	
-	Mientras opcion1<>"n" Hacer
+	Mientras opcion1 != "n" Hacer
 		Limpiar Pantalla;
 		Escribir "Bienvenido Usuario ", nombre;
 		Escribir "¿Desea Continuar?";
