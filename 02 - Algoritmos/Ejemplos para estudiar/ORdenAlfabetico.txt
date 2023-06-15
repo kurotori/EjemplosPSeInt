@@ -35,34 +35,6 @@
 		letras[25]='y';
 		letras[26]='z';
 		
-		valores[0]=0;
-		valores[1]=1;
-		valores[2]=2;
-		valores[3]=3;
-		valores[4]=4;
-		valores[5]=5;
-		valores[6]=6;
-		valores[7]=7;
-		valores[8]=8;
-		valores[9]=9;
-		valores[10]=10;
-		valores[11]=11;
-		valores[12]=12;
-		valores[13]=13;
-		valores[14]=14;
-		valores[15]=15;
-		valores[16]=16;
-		valores[17]=17;
-		valores[18]=18;
-		valores[19]=19;
-		valores[20]=20;
-		valores[21]=21;
-		valores[22]=22;
-		valores[23]=23;
-		valores[24]=24;
-		valores[25]=25;
-		valores[26]=26;
-		
 		letra1=Minusculas(letra1);
 		letra2=Minusculas(letra2);
 		
@@ -71,27 +43,9 @@
 		v_letra2=0;
 		posicion=0;
 		
-		Mientras posicion<=26 Hacer
-			Si letra1=letras[posicion] Entonces
-				v_letra1=posicion;
-				posicion=27;
-			SiNo
-				posicion = posicion+1 ;
-			Fin Si
-		Fin Mientras
-		//Escribir "letra 1:",v_letra1;
-		
-		posicion=0;
-		Mientras posicion<=26 Hacer
-			Si letra2=letras[posicion] Entonces
-				v_letra2=posicion;
-				posicion=27;
-			SiNo
-				posicion = posicion+1 ;
-			Fin Si
-		Fin Mientras
-		
-		//Escribir "letra 2:",v_letra2;
+		Para variable_numerica<-valor_inicial Hasta valor_final Con Paso paso Hacer
+			secuencia_de_acciones
+		Fin Para
 		
 		resultado=falso;
 		
