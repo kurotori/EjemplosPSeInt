@@ -45,7 +45,7 @@ Funcion palabra<-diccionario()
 	palabras(30)='Lobo';
 	palabras(31)='Peluche';
 	palabras(32)='Luna';
-	palabras(33)='Globo';
+	palabras(33)='Mouse';
 	palabras(34)='Celular';
 	palabras(35)='Naranja';
 	palabras(36)='Mariposa';
@@ -329,7 +329,7 @@ Algoritmo Ahorcado
 	opciones=0;
 	
 	//Declaramos el bucle principal del juego
-	Mientras opciones!=2 Hacer
+	Mientras opciones<>2 Hacer
 		
 		//Mostramos el menú con las opciones de inicio y esperamos la
 		// elección del usuario, que guardaremos en la variable 'opciones'

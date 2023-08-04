@@ -1,66 +1,95 @@
 
-//Devuelve verdadero si letra1 aparece antes que letra2 en el abecedario
-//si no es así o son iguales, devuelve falso.
-	Funcion resultado<-LetrasOrdenadas(letra1,letra2)
-		Definir letras como Caracter;
-		Definir valores como Entero;
-		Definir resultado como Logico;
-		Dimension letras[28];
-		Dimension valores[28];
-		letras[0]='a';
-		letras[1]='b';
-		letras[2]='c';
-		letras[3]='d';
-		letras[4]='e';
-		letras[5]='f';
-		letras[6]='g';
-		letras[7]='h';
-		letras[8]='i';
-		letras[9]='j';
-		letras[10]='k';
-		letras[11]='l';
-		letras[12]='m';
-		letras[13]='n';
-		letras[14]='ñ';
-		letras[15]='o';
-		letras[16]='p';
-		letras[17]='q';
-		letras[18]='r';
-		letras[19]='s';
-		letras[20]='t';
-		letras[21]='u';
-		letras[22]='v';
-		letras[23]='w';
-		letras[24]='x';
-		letras[25]='y';
-		letras[26]='z';
-		
-		letra1=Minusculas(letra1);
-		letra2=Minusculas(letra2);
-		
-		Definir v_letra1, v_letra2,posicion como entero;
-		v_letra1=0;
-		v_letra2=0;
-		posicion=0;
-		
-		Para variable_numerica<-valor_inicial Hasta valor_final Con Paso paso Hacer
-			secuencia_de_acciones
+//Esta función obtiene la letra que se encuentra en la posición numérica indicada
+// por el parámetro 'posición', buscándola dentro de la palabra indicada en el
+// parámetro 'palabra', y pasándola a minúsculas.
+Funcion letra<-letraEn(posicion,palabra)
+	//Declaramos la variable 'letra' para la letra que buscaremos
+	Definir letra como Texto;
+	
+	//Chequeamos que el valor de posición no sea negativo ni 
+	// supere la cantidad de caracteres de la palabra indicada 
+	Si (posicion >= 0) Y (posicion < Longitud(palabra)) Entonces
+		//Si cumple con esas condiciones obtenemos la letra en esa 
+		// posición usando la función 'Subcadena'y la almacenamos en la variable 'letra'
+		letra = Subcadena(palabra,posicion,posicion);
+	SiNo
+		//Si no cumple con estas condiciones, se establece el valor de
+		// la variable 'letra' con un texto vacío
+		letra="";
+	Fin Si
+FinFuncion
+
+
+//Devuelve Verdadero si letra1 aparece antes que letra2 en el abecedario 
+//o son iguales, si no es así  devuelve falso.
+Funcion resultado<-LetrasOrdenadas(letra1,letra2)
+	Definir resultado como Logico;
+	resultado=falso;
+	
+	Definir v_letra1, v_letra2, posicion como entero;
+	v_letra1=0;
+	v_letra2=0;
+	posicion=0;
+	
+	letra1=Minusculas(letra1);
+	letra2=Minusculas(letra2);
+	
+	Definir letras como Caracter;
+	Dimension letras[28];
+	letras[0]='a';
+	letras[1]='b';
+	letras[2]='c';
+	letras[3]='d';
+	letras[4]='e';
+	letras[5]='f';
+	letras[6]='g';
+	letras[7]='h';
+	letras[8]='i';
+	letras[9]='j';
+	letras[10]='k';
+	letras[11]='l';
+	letras[12]='m';
+	letras[13]='n';
+	letras[14]='ñ';
+	letras[15]='o';
+	letras[16]='p';
+	letras[17]='q';
+	letras[18]='r';
+	letras[19]='s';
+	letras[20]='t';
+	letras[21]='u';
+	letras[22]='v';
+	letras[23]='w';
+	letras[24]='x';
+	letras[25]='y';
+	letras[26]='z';
+	
+	Si letra1!=letra2 Entonces
+		Para posicion=0 Hasta 26 Con Paso 1 Hacer
+			Si letra1=letras(posicion) Entonces
+				v_letra1=posicion;
+			Fin Si
+			Si letra2=letras(posicion) Entonces
+				v_letra2=posicion;
+			Fin Si
 		Fin Para
-		
-		resultado=falso;
 		
 		Si v_letra1<v_letra2 Entonces
 			resultado=Verdadero;
 		Fin Si
-		
-	FinFuncion
+	SiNo
+		resultado=Verdadero;
+	Fin Si
+
+FinFuncion
 	
-	
+//Recorre dos palabras, determinando si están ordenadas alfabeticamente
+// Si es así, devuelve Verdadero, de lo contrario, devuelve Falso
 Funcion resultado<-PalabrasOrdenadas(palabra1,palabra2)
 	Definir resultado como Logico;
 	resultado=falso;
 	Definir letra1_1, letra1_2 como Caracter;
-	Definir long_mas_corta como Entero;
+	Definir long_mas_corta, posicion como Entero;
 	
 	Si Longitud(palabra1)>Longitud(palabra2) Entonces
 		long_mas_corta=Longitud(palabra2);
@@ -70,28 +99,32 @@ Funcion resultado<-PalabrasOrdenadas(palabra1,palabra2)
 		//Escribir "long mas corta ", palabra1;
 	Fin Si
 	
-	Definir posicion como Entero;
-	Para posicion<-0 Hasta long_mas_corta Con Paso 1 Hacer
-		letra1_1 = Subcadena(palabra1,posicion,posicion);
-		letra1_2 = Subcadena(palabra2,posicion,posicion);
+	//Comparación letra a letra
+	Para posicion=0 Hasta long_mas_corta Con Paso 1 Hacer
+		//Obtenemos las letras de cada palabra
+		letra1_1 = letraEn(posicion, palabra1);
+		letra1_2 = letraEn(posicion, palabra2);
 		
-		Si letra1_1<>letra1_2 Entonces
+		//Comparamos esas letras
+		Si letra1_1 != letra1_2 Entonces
+			//Si las letras no son iguales, determinamos si estan ordenadas
 			Si LetrasOrdenadas(letra1_1,letra1_2) Entonces
+				//Si estan ordenadas, establecemos el resultado a verdadero
 				resultado = Verdadero;
 			Fin Si
+			//Sea cual sea el resultado, cerramos el bucle en esta posición
 			posicion=long_mas_corta;
+		SiNo
+			//Si las letras son iguales, establecemos el resultado a verdadero
+			resultado = Verdadero;
 		Fin Si
+		
 	Fin Para
-	
-	
-	
-	
-	
-	
-	
+
 FinFuncion
 	
 Algoritmo OrdenAlfabetico
+	Limpiar Pantalla;
 	Definir palabras como Caracter;
 	Dimension palabras[5];
 	palabras[0]="palo";
@@ -100,34 +133,7 @@ Algoritmo OrdenAlfabetico
 	palabras[3]="aaron";
 	palabras[4]="eso";
 	
-	Escribir "Antes de ordenar";
-	Definir pos Como Entero;
-	Para pos<-0 Hasta 5-1 Con Paso 1 Hacer
-		Escribir palabras[pos];
-	Fin Para
 	
-	
-	
-	Definir posA como Entero;
-	Definir temporal Como Caracter;
-	Para posA<-0 Hasta 5-1 Con Paso 1 Hacer
-		Si posA+1<5 Entonces
-			Si NO PalabrasOrdenadas(palabras[posA],palabras[posA+1]) Entonces
-				temporal=palabras[posA];
-				palabras[posA]=palabras[posA+1];
-				palabras[posA+1]=temporal;
-			Fin Si
-		Fin Si
-		
-	Fin Para
-	
-	Escribir "Después de ordenar";
-	pos=0;
-	Para pos<-0 Hasta 5-1 Con Paso 1 Hacer
-		Escribir palabras[pos];
-	Fin Para
-	
-	
-	
+	Escribir PalabrasOrdenadas(palabras[1],palabras[3]);
 	
 FinAlgoritmo

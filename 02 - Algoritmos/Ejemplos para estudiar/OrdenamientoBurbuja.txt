@@ -1,0 +1,61 @@
+Funcion rellenarLista(lista,longitudL)
+	Definir posicion,posicionB,temporal como Entero;
+	
+	lista(0)=Azar(longitudL+1);
+	
+	Para posicion=1 Hasta longitudL-1 Con Paso 1 Hacer
+		temporal=0;
+		Para posicionB=0 Hasta posicion-1 Con Paso 1 Hacer
+			Si temporal=lista(posicionB) Entonces
+				temporal=Azar(longitudL+1);
+			Fin Si
+		Fin Para
+		lista(posicion)=temporal;
+		Escribir Sin Saltar lista(posicion);
+		Escribir "";
+	Fin Para
+FinFuncion
+
+Funcion mostrarLista(lista,longitudL)
+	Definir posicion como Entero;
+	Para posicion<-0 Hasta longitudL-1 Con Paso 1 Hacer
+		Escribir Sin Saltar lista(posicion), " ";
+		
+	Fin Para
+	Escribir "";
+FinFuncion
+
+
+Algoritmo sin_titulo
+	Definir estaDesordenado Como Logico;
+	Definir listaN,posicion,temporal,longitudL,turno como Entero;
+	turno=0;
+	longitudL=15;
+	Dimension listaN(longitudL);
+	estaDesordenado=Verdadero;
+	
+	
+	rellenarLista(listaN,longitudL);
+	
+	Escribir "Inicio:";
+	mostrarLista(listaN,longitudL);
+	Escribir "---------------------------";
+	
+	Mientras estaDesordenado Hacer
+		estaDesordenado=falso;
+		Para posicion=1 Hasta longitudL-1 Con Paso 1 Hacer
+			Si listaN(posicion-1) > listaN(posicion) Entonces
+				temporal = listaN(posicion);
+				listaN(posicion) = listaN(posicion-1);
+				listaN(posicion-1) = temporal;
+				estaDesordenado=Verdadero;
+			Fin Si
+		Fin Para
+		Escribir "Turno:", turno;
+		mostrarLista(listaN,longitudL);
+		turno = turno + 1;
+	Fin Mientras
+	
+	
+	
+FinAlgoritmo
