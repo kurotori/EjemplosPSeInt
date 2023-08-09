@@ -32,7 +32,8 @@ Algoritmo Ahorcado
 			letraEsta = falso;
 			Mientras posicion2<Longitud(letrasAcertadas) Y letraEsta == Falso Hacer
 				Si Subcadena(palabra,posicion,posicion)==Subcadena(letrasAcertadas,posicion2,posicion2) Entonces
-					MostrarPalabra = Concatenar(MostrarPalabra, Subcadena(letrasAcertadas,posicion2,posicion2) );
+					//MostrarPalabra = Concatenar(MostrarPalabra, Subcadena(letrasAcertadas,posicion2,posicion2) );
+					MostrarPalabra = Concatenar(MostrarPalabra,"_ ");
 					letraEsta = Verdadero;
 				SiNo
 					MostrarPalabra = Concatenar(MostrarPalabra,"_ ");
