@@ -5,11 +5,11 @@
 
 //Esta función selecciona una palabra al azar de una lista predefinida
 // y la entrega como resultado
-Funcion palabra<-diccionario()
+Funcion palabra<-diccionario(algo)
 	//Se definen las variables 'palabra' y 'palabras'
 	Definir palabra,palabras como texto;
 	//Declaramos a 'palabras' como una lista
-	Dimension palabras(50);
+	Dimension palabras(51);
 	
 	//Agregamos palabras a la lista 'palabras'
 	palabras(0)='Gorra';
@@ -62,6 +62,7 @@ Funcion palabra<-diccionario()
 	palabras(47)='Anillo';
 	palabras(48)='Pluma';
 	palabras(49)='Rana';
+	palabras(50)='Socotroco';
 	
 	//Asignamos a la variable 'palabra' una posición de la lista 'palabras'
 	// elegida al azar mediante la función 'Azar'. También pasamos esa palabra
@@ -307,7 +308,7 @@ FinFuncion
 
 //Esta función muestra un mensaje de error para ser usado cuando el jugador ingrese
 // una opción no válida en alguno de los menúes del juego.
-Funcion opcionNoValida()
+Funcion opcionNoValida(algo)
 	Escribir "";
 	Escribir "Opción no válida.";
 	Escribir "Presione cualquier tecla para continuar";
@@ -366,7 +367,7 @@ Algoritmo Ahorcado
 				
 				//Inicializamos la variable 'palabra' con una palabra secreta 
 				// elegida al azar mediante la función 'diccionario'
-				palabra = diccionario();
+				palabra = diccionario("");
 				
 				//Declaramos el bucle principal del juego con dos condiciones:
 				//  1 - El jugador debe tener más de 0 vidas
@@ -512,12 +513,12 @@ Algoritmo Ahorcado
 					//Si se ingresa un valor no establecido, se muestra un mensaje de error
 					// con la función 'opciónNoVálida'	
 					De Otro Modo:
-						opcionNoValida();
+						opcionNoValida(0);
 				Fin Segun
 			//Si se ingresa un valor no establecido, se muestra un mensaje de error
 			// con la función 'opciónNoVálida'	
 			De Otro Modo:
-				opcionNoValida();
+				opcionNoValida(0);
 		Fin Segun
 		
 	Fin Mientras

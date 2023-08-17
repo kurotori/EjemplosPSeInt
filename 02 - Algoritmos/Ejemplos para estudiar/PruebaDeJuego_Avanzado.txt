@@ -1,25 +1,100 @@
-Funcion dibujarTablero(limiteX,limiteY,posX,posY)
+
+//Dibuja en pantalla el tablero de juego
+//Requiere las variables de los límites y la posicion del jugador
+Funcion dibujarTablero(limiteX,limiteY,posX,posY,tablero)
 	Definir contX, contY Como Entero;
-	Para contY=-1 Hasta limiteY+1 Con Paso 1 Hacer
-		Escribir Sin Saltar "*";
-		Para contX=0 Hasta limiteX Con Paso 1 Hacer
-			
-			
-			Si contY=posY y contX=posX Entonces
-				Escribir Sin Saltar "@";
+	
+	Para contY=-1 Hasta limiteY Con Paso 1 Hacer
+		
+		Para contX=-1 Hasta limiteX Con Paso 1 Hacer
+			Si contY=-1 o contY = limiteY o contX=-1 o contX=limiteX  Entonces
+				Escribir Sin Saltar "*";
 			SiNo
-				Si contY<0 o contY>limiteY Entonces
-					Escribir Sin Saltar "*";
+				Si contY=posY y contX=posX Entonces
+					Escribir Sin Saltar "@";
 				SiNo
-					Escribir Sin Saltar " ";
-				Fin Si
-			Fin Si
+					Segun tablero(contX,contY) Hacer
+						0:
+							Escribir Sin Saltar " ";
+						1:
+							Escribir Sin Saltar "T";
+						//Valores para Monstruos. Comentar para ocultar	
+//						2:
+//							Escribir Sin Saltar "M";
+//						3:
+//							Escribir Sin Saltar "M";
+//						4:
+//							Escribir Sin Saltar "4";
+//						5:
+//							Escribir Sin Saltar "5";
+//						6:
+//							Escribir Sin Saltar "6";
+//						7:
+//							Escribir Sin Saltar "7";
+//						8:
+//							Escribir Sin Saltar "8";
+//						9:
+//							Escribir Sin Saltar "9";
+//							
+						//Portal de salida	
+						10:
+							Escribir Sin Saltar "^";
+						11:
+							Escribir Sin Saltar "|";
+						//
+						De Otro Modo:
+							Escribir Sin Saltar " ";
+					Fin Segun
+				FinSi
+				
+			FinSi
 		Fin Para
-		Escribir "*";
+		Escribir "";
 	Fin Para
 FinFuncion
 
-Funcion pos<-ChequearPos(posActual, limite)
+Funcion resultado<-AleatorioEntreDos(valorA,ValorB)
+	Definir resultado,prueba Como Entero;
+	resultado=valorA;
+	prueba=Aleatorio(0,1);
+	Si prueba=1 Entonces
+		resultado=valorB;
+	FinSi
+FinFuncion
+
+
+//Inicializa una lista de tipo Caracter con espacios vacíos
+Funcion InicializarTablero(tablero, limiteX, limiteY)
+	Para contadorA=0 Hasta limiteX-1 Con Paso 1 Hacer
+		Para contadorB=0 Hasta limiteY-1 Con Paso 1 Hacer
+			tablero(contadorA,contadorB)= Aleatorio(0,9);
+		Fin Para
+	Fin Para
+	tablero(0,0)=0;
+	Definir XSalida,YSalida Como Entero;
+	XSalida=Aleatorio((limiteX/2),limiteX-1);
+	Si XSalida<limiteX Entonces
+		YSalida=AleatorioEntreDos(0,limiteY-1);
+	SiNo
+		YSalida=Aleatorio(0,limiteY-1);
+	FinSi
+	
+	
+	
+	Si XSalida = limiteX-1 Entonces
+		tablero(XSalida,YSalida)=11;
+		tablero(XSalida,YSalida)=10;
+		tablero(XSalida,YSalida)=11;
+	SiNo
+		tablero(XSalida-1,YSalida)=11;
+		tablero(XSalida,YSalida)=10;
+		tablero(XSalida+1,YSalida)=11;
+	FinSi
+	
+FinFuncion
+
+//Chequea que un movimiento del jugador no saque el personaje fuera del tablero
+Funcion pos<-ChequearMov(posActual, limite)
 	Definir pos Como Entero;
 	Si posActual < 0 Entonces
 		pos = 0;
@@ -32,64 +107,132 @@ Funcion pos<-ChequearPos(posActual, limite)
 	Fin Si
 FinFuncion
 
+//Funciones que permiten mover el personaje 
 Funcion nuevaPosY<-MoverArriba(posYActual, limiteY)
 	Definir nuevaPosY Como Entero;
-	nuevaPosY = ChequearPos(posYActual - 1, limiteY);
+	nuevaPosY = ChequearMov(posYActual - 1, limiteY);
 FinFuncion
 
 Funcion nuevaPosY<-MoverAbajo(posYActual, limiteY)
 	Definir nuevaPosY Como Entero;
-	nuevaPosY = ChequearPos( posYActual + 1, limiteY);
+	nuevaPosY = ChequearMov( posYActual + 1, limiteY);
 FinFuncion
 
 Funcion nuevaPosX<-MoverDerecha(posXActual, limiteX)
 	Definir nuevaPosX Como Entero;
-	nuevaPosX = ChequearPos( posXActual + 1, limiteX);
+	nuevaPosX = ChequearMov( posXActual + 1, limiteX);
 FinFuncion
 
 Funcion nuevaPosX<-MoverIzquierda(posXActual,limiteX)
 	Definir nuevaPosX Como Entero;
-	nuevaPosX = ChequearPos( posXActual - 1, limiteX);
+	nuevaPosX = ChequearMov( posXActual - 1, limiteX);
 FinFuncion
 
+//Realiza un chequeo de la posición del personaje contra el contenido del tablero
+//
+Funcion resultado<-ChequearPos(posX, posY, tablero)
+	Definir resultado Como Logico;
+	resultado = Verdadero;
+	Segun tablero(posX,posY) Hacer
+		0:
+			resultado = Verdadero;
+		1:
+			resultado = Falso;
+			Escribir "Es Árbol";
+			Esperar Tecla;
+		2:
+			resultado = Falso;
+			Escribir "Es Monstruo";
+			Esperar Tecla;
+		3:
+			resultado = Falso;
+			Escribir "Es Monstruo";
+			Esperar Tecla;
+		4:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		5:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		6:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		7:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		8:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		9:
+			resultado = Verdadero;
+			Escribir "Es Camino";
+			Esperar Tecla;
+		De Otro Modo:
+			resultado = Falso;
+	Fin Segun
+	//Si tablero(posX,posY) = 0 Entonces
+		//resultado = Falso;
+	//FinSi
+	
+FinFuncion
+// --- // --- //
 
-//Juego
+
+//Ejecución del Juego
 
 Algoritmo PruebaDeJuego
 	Limpiar Pantalla;
 	
-	Definir posX, posY, limiteX, limiteY Como Entero;
+	Definir contadorA,contadorB, posX, posY, posYnueva, posXnueva, limiteX, limiteY Como Entero;
 	posX=0;
 	posY=0;
-	limiteX=60;
-	limiteY=13;
+	limiteX=70;
+	limiteY=18;
 	
+	Definir tablero como Entero;
+	Dimension tablero(limiteX,limiteY);
+	
+	InicializarTablero(tablero,limiteX,limiteY);
 	
 	Definir opcionU Como Caracter;
 	opcionU="";
 	
 	Mientras opcionU<>"salir" Hacer
 		
-		dibujarTablero(limiteX, limiteY,posX,posY);
-		Escribir posX,",",posY;
+		
+		dibujarTablero(limiteX, limiteY,posX,posY,tablero);
+		Escribir posX,",",posY,"|",posXnueva,",",posYnueva;
 		Leer opcionU;
 		opcionU=Minusculas(opcionU);
 		
 		Segun opcionU Hacer
 			"s":
-				posY=MoverAbajo(posY,limiteY);
+				posYnueva=MoverAbajo(posY,limiteY);
 			"w":
-				posY=MoverArriba(posY,limiteY);
-	
+				posYnueva=MoverArriba(posY,limiteY);
 			"a":
-				posX=MoverIzquierda(posX,limiteX);
+				posXnueva=MoverIzquierda(posX,limiteX);
 			"d":
-				posX=MoverDerecha(posX,limiteX);
+				posXnueva=MoverDerecha(posX,limiteX);
 			De Otro Modo:
-				posX=posX;
-				posY=posY;
+				//posXnueva=posX;
+				//posYnueva=posY;
+				Escribir "No válido";
+				Esperar Tecla;
 		Fin Segun
 		
+		Si ChequearPos(posXnueva,posYnueva,tablero) Entonces
+				posX=posXnueva;
+				posY=posYnueva;
+		SiNo
+			posXnueva=posX;
+			posYnueva=posY;
+		FinSi
 		
 		Limpiar Pantalla;
 	Fin Mientras
