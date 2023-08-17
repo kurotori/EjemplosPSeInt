@@ -219,6 +219,8 @@ Algoritmo PruebaDeJuego
 				posXnueva=MoverIzquierda(posX,limiteX);
 			"d":
 				posXnueva=MoverDerecha(posX,limiteX);
+			"salir":
+				
 			De Otro Modo:
 				//posXnueva=posX;
 				//posYnueva=posY;
