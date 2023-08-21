@@ -1,4 +1,4 @@
-Funcion dibujarTablero(limiteX,limiteY,posX,posY)
+Funcion dibujarTablero(limiteX,limiteY,posX,posY,mapa)
 	Definir contX, contY Como Entero;
 	Para contY=-1 Hasta limiteY Con Paso 1 Hacer
 		Escribir Sin Saltar "*";
@@ -9,7 +9,7 @@ Funcion dibujarTablero(limiteX,limiteY,posX,posY)
 				Si contY=-1 o contY=limiteY Entonces
 					Escribir Sin Saltar "*";
 				SiNo
-					DibujarContenidoDeMapa(posX,posY,contX,contY);//Escribir Sin Saltar " ";
+					DibujarContenidoDeMapa(posX,posY,contX,contY,mapa);//Escribir Sin Saltar " ";
 				FinSi
 			FinSi
 			
@@ -18,12 +18,27 @@ Funcion dibujarTablero(limiteX,limiteY,posX,posY)
 	Fin Para
 FinFuncion
 
-Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY)
+Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY,mapa)
 	Si coordX=posX y coordY = posY Entonces
 		Escribir Sin Saltar "@";
 	SiNo
-		Escribir Sin Saltar " ";
+		Segun mapa(coordX,coordY) Hacer
+			0:
+				Escribir Sin Saltar " ";
+			2:
+				Escribir Sin Saltar "2";
+			
+		FinSegun
 	FinSi
+FinFuncion
+
+Funcion RellenarMapa(mapaVacio,limiteX,limiteY)
+	Definir contX,contY Como Entero;
+	Para contY=0 Hasta limiteY-1 Con Paso 1 Hacer
+		Para contX=0 Hasta limiteX-1 Con Paso 1 Hacer
+			mapaVacio(contX,contY) = Aleatorio(0,10);
+		Fin Para
+	Fin Para
 FinFuncion
 
 Funcion pos<-ChequearPos(posActual, limite)
@@ -68,14 +83,16 @@ Algoritmo PruebaDeJuego
 	posY=0;
 	limiteX=15;
 	limiteY=5;
-	
+	Definir mapa Como Entero;
+	Dimension mapa(limiteX,limiteY);
+	RellenarMapa(mapa,limiteX,limiteY);
 	
 	Definir opcionU Como Caracter;
 	opcionU="";
 	
 	Mientras opcionU<>"salir" Hacer
 		Escribir posX,",",posY;
-		dibujarTablero(limiteX, limiteY,posX,posY);
+		dibujarTablero(limiteX, limiteY,posX,posY,mapa);
 		Leer opcionU;
 		opcionU=Minusculas(opcionU);
 		
