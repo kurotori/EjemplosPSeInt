@@ -29,9 +29,9 @@ Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY,mapa)
 	SiNo
 		Segun mapa(coordX,coordY) Hacer
 			0:
-				Escribir Sin Saltar ",";
-			2:
-				Escribir Sin Saltar "2";
+				Escribir Sin Saltar " ";
+			//2:
+				//Escribir Sin Saltar "2";
 			
 			//Árboles	
 			3:
@@ -39,13 +39,13 @@ Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY,mapa)
 			//Cáctus	
 			4:
 				Escribir Sin Saltar "Y";
-			5:
-				Escribir Sin Saltar ",";
-			6:
-				Escribir Sin Saltar "m";
+			//5:
+				//Escribir Sin Saltar ",";
+			//6:
+				//Escribir Sin Saltar "m";
 				
 			De Otro Modo:
-				Escribir Sin Saltar ",";
+				Escribir Sin Saltar " ";
 		FinSegun
 	FinSi
 FinFuncion

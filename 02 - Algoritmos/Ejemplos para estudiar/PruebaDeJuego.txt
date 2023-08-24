@@ -26,8 +26,17 @@ Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY,mapa)
 			0:
 				Escribir Sin Saltar " ";
 			2:
-				Escribir Sin Saltar "2";
-			
+				Escribir Sin Saltar " ";
+			3:
+				Escribir Sin Saltar " ";
+			4:
+				Escribir Sin Saltar " ";
+			5:
+				Escribir Sin Saltar "Y";
+			6:
+				Escribir Sin Saltar "t";
+			De Otro Modo:
+				Escribir Sin Saltar " ";
 		FinSegun
 	FinSi
 FinFuncion
@@ -39,6 +48,28 @@ Funcion RellenarMapa(mapaVacio,limiteX,limiteY)
 			mapaVacio(contX,contY) = Aleatorio(0,10);
 		Fin Para
 	Fin Para
+FinFuncion
+
+Funcion resultado<-ChequearObstaculo(posX,posY,mapa)
+	Definir resultado Como Logico;
+	resultado=Falso;
+	Segun mapa(posX,posY) Hacer
+		0:
+			resultado = Verdadero;
+		1:
+			resultado = Verdadero;
+		7:
+			resultado = Verdadero;
+		8:
+			resultado = Verdadero;
+		9:
+			resultado = Verdadero;
+		10:
+			resultado = Verdadero;
+		De Otro Modo:
+			Escribir mapa(posX,posY);
+			Esperar Tecla;
+	FinSegun
 FinFuncion
 
 Funcion pos<-ChequearPos(posActual, limite)
@@ -79,12 +110,17 @@ FinFuncion
 
 Algoritmo PruebaDeJuego
 	Definir posX, posY, limiteX, limiteY Como Entero;
+	Definir posXnueva, posYnueva Como Entero;
+	posXnueva=0;
+	posYnueva=0;
 	posX=0;
 	posY=0;
-	limiteX=15;
-	limiteY=5;
+	limiteX=85;
+	limiteY=18;
+	
 	Definir mapa Como Entero;
 	Dimension mapa(limiteX,limiteY);
+	
 	RellenarMapa(mapa,limiteX,limiteY);
 	
 	Definir opcionU Como Caracter;
@@ -98,10 +134,12 @@ Algoritmo PruebaDeJuego
 		
 		Segun opcionU Hacer
 			"s":
-				posY=MoverAbajo(posY,limiteY);
+				posYnueva=MoverAbajo(posY,limiteY);
+				Si ChequearObstaculo(posX,posYnueva,mapa) Entonces
+					posY = posYnueva;
+				FinSi
 			"w":
 				posY=MoverArriba(posY,limiteY);
-	
 			"a":
 				posX=MoverIzquierda(posX,limiteX);
 			"d":
