@@ -35,6 +35,8 @@ Funcion DibujarContenidoDeMapa(posX,posY,coordX,coordY,mapa)
 				Escribir Sin Saltar "Y";
 			6:
 				Escribir Sin Saltar "t";
+			11:
+				Escribir Sin Saltar "O";
 			De Otro Modo:
 				Escribir Sin Saltar " ";
 		FinSegun
@@ -48,6 +50,18 @@ Funcion RellenarMapa(mapaVacio,limiteX,limiteY)
 			mapaVacio(contX,contY) = Aleatorio(0,10);
 		Fin Para
 	Fin Para
+	
+	Definir portalX, portalY Como Entero;
+	portalX = Aleatorio( trunc(limiteX/2) , limiteX);
+	portalY = Aleatorio( trunc(limiteY/2) , limiteY);
+	mapaVacio(portalX,portalY)=11;
+FinFuncion
+
+Funcion talarArbol(algo)
+	Definir opcionU Como Caracter;
+	Escribir "Es un árbol.";
+	Escribir "1 - Talar (+4 Madera)  2 - No hacer nada";
+	Esperar Tecla;
 FinFuncion
 
 Funcion resultado<-ChequearObstaculo(posX,posY,mapa)
@@ -58,6 +72,12 @@ Funcion resultado<-ChequearObstaculo(posX,posY,mapa)
 			resultado = Verdadero;
 		1:
 			resultado = Verdadero;
+		5:
+			//resultado = Falso;
+			talarArbol(0);
+		6:
+			//resultado = Verdadero;
+			talarArbol(0);
 		7:
 			resultado = Verdadero;
 		8:
@@ -139,11 +159,20 @@ Algoritmo PruebaDeJuego
 					posY = posYnueva;
 				FinSi
 			"w":
-				posY=MoverArriba(posY,limiteY);
+				posYnueva=MoverArriba(posY,limiteY);
+				Si ChequearObstaculo(posX,posYnueva,mapa) Entonces
+					posY = posYnueva;
+				FinSi
 			"a":
-				posX=MoverIzquierda(posX,limiteX);
+				posXnueva=MoverIzquierda(posX,limiteX);
+				Si ChequearObstaculo(posXnueva,posY,mapa) Entonces
+					posX = posXnueva;
+				FinSi
 			"d":
-				posX=MoverDerecha(posX,limiteX);
+				posXnueva=MoverDerecha(posX,limiteX);
+				Si ChequearObstaculo(posXnueva,posY,mapa) Entonces
+					posX = posXnueva;
+				FinSi
 			De Otro Modo:
 				posX=posX;
 				posY=posY;
