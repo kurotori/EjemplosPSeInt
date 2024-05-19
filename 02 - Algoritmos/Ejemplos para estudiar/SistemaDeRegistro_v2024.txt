@@ -1,0 +1,61 @@
+Algoritmo SistemaDeRegistro_v2024
+	
+	Definir cant Como Entero;
+	cant = 10;
+	Definir nombres,apellidos como Texto;
+	Dimension nombres(cant), apellidos(cant);
+	Definir regVacio Como Entero;
+	regVacio=0;
+	
+	Definir opciones Como Caracter;
+	opciones = "";
+	
+	Para posicion=0 Hasta (cant-1) Con Paso 1
+		nombres(posicion) = "...";
+		apellidos(posicion) = "...";
+	FinPara
+	
+	Mientras (opciones != "s") Y (opciones != "S") Hacer
+		Limpiar Pantalla;
+		Escribir "Elija una opciòn:";
+		Escribir "1 - Crear un registro";
+		Escribir "2 - Modificar un registro";
+		Escribir "3 - Eliminar un registro";
+		Escribir "S - Salir";
+		Leer opciones;
+		Limpiar Pantalla;
+		
+		Segun opciones Hacer
+			"1":
+				Escribir "Nuevo Registro";
+				regVacio = 0;
+				
+				Mientras nombres(regVacio)!="..." Hacer
+					regVacio = regVacio + 1;
+				FinMientras
+				
+				Escribir "Posicion ",regVacio;
+				Escribir Sin Saltar "Nombre:";
+				Leer nombres(regVacio);
+				
+				Escribir Sin Saltar "Apellido:";
+				Leer apellidos(regVacio);
+				
+				Esperar Tecla;
+			"2":
+				Escribir "Modificar Registro";
+				Esperar Tecla;
+			"3":
+				Escribir "Eliminar Registro";
+				Esperar Tecla;
+		Fin Segun
+		
+		Si opciones="s" O opciones="S" Entonces
+			Escribir "Va a Salir ¿Está Seguro?";
+			Escribir "S - Si    N - No";
+			Leer opciones;
+		
+			
+		Fin Si
+	Fin Mientras
+FinAlgoritmo
