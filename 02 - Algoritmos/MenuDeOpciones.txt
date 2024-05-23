@@ -1,0 +1,110 @@
+//Algoritmo de Menú de Opciones
+//	Por Luis Sebastián de los Ángeles
+//  ----------------------------------
+// Este algoritmo demuestra cómo se declara un menú de opciones simple
+//	realizando algunas modificaciones a un algoritmo Bucle Principal
+
+Algoritmo MenuDeOpciones
+	//Declaramos una variable para las opciones que elija el usuario...
+	Definir opciones como Texto;
+	//... y la inicializamos
+	opciones = "";
+	
+	//Declaramos el Bucle Principal, controlado por la variable 'opciones'
+	Mientras opciones!="x" Hacer
+		//Limpiamos la pantalla para lograr una visualización más fluida
+		Limpiar Pantalla;
+		
+		//Se muestran en pantalla las opciones disponibles
+		Escribir "Elija una opción:";
+		Escribir "1: Opción 1";
+		Escribir "2: Opción 1";
+		Escribir "3: Opción 1";
+		Escribir "x: salir";
+		
+		//Esperamos la selección del usuario
+		Leer opciones;
+		//Transformamos el dato ingresado a minúsculas para facilitar su análisis
+		opciones = Minusculas(opciones);
+		
+		Limpiar Pantalla;
+		
+		//Evaluación de la selección del usuario
+		Segun opciones Hacer
+			
+			//En esta opción del sistema demostraremos un submenú persistente
+			"1":
+				//Para establecer el submenu persistente, declaramos un bucle principal anidado
+				// y reniciamos la variable 'opciones' para evitar cierres prematuros del bucle
+				opciones = "";
+				
+				
+				//Este submenú funciona de forma semejante al principal
+				Mientras opciones != "x" Hacer
+					
+					Escribir "Eligió la opción 1";
+					Escribir "Opciones del sub menu 1:";
+					Escribir "1 - Sub Opción 1.1";
+					Escribir "2 - Sub Opción 1.2";
+					Escribir "3 - Sub Opción 1.3";
+					Escribir "X - Volver al Menu Principal";
+					
+					Leer opciones;
+					
+					opciones = Minusculas(opciones);
+					
+					Limpiar Pantalla;
+					
+					Segun opciones Hacer
+						"1":
+							Escribir "Elegiste la opción 1.1";
+							Esperar Tecla;
+						"2":
+							Escribir "Elegiste la opción 1.2";
+							Esperar Tecla;
+						"3":
+							Escribir "Elegiste la opción 1.3";
+							Esperar Tecla;
+					Fin Segun
+					
+					Limpiar Pantalla;
+					
+				FinMientras
+				
+				//Reiniciamos la variable opciones para evitar que el bucle principal
+				// se cierre prematuramente
+				opciones = "";
+				
+			"2":
+				Escribir "Eligió 2";
+				Esperar Tecla;
+				
+			//En caso de que el usuario elija la opción de salir, le advertimos
+			// que ha seleccionado esa opción y le pedimos confirmación	
+			"x":
+				Escribir "Vas a salir del programa";
+				Escribir "¿Deseas continuar?";
+				Escribir "S: Si      N:No";
+				
+				//Obtenemos la selección del usuario y la almacenamos en la variable 'opciones'
+				Leer opciones;
+				opciones = Minusculas(opciones);
+				
+				//Analizamos la selección del usuario
+				Si opciones="s" Entonces
+					
+					//Si el usuario confirma la salida, debemos modificar el valor de 
+					// la variable 'opciones' a 'x' para permitir el cierre del bucle
+					opciones="x";
+					
+				SiNo
+					
+					//Si el usuario no confirma la salida, o si ingresa cualquier otro
+					// valor, reiniciamos el valor de la variable 'opciones' para evitar
+					// el cierre prematuro del bucle
+					opciones="";
+				FinSi
+		Fin Segun
+		
+	Fin Mientras
+FinAlgoritmo
